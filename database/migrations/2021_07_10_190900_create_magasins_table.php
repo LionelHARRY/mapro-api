@@ -36,6 +36,6 @@ class CreateMagasinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('magasins');
+        Schema::dropIfExists('shops');
     }
 }
