@@ -25,6 +25,8 @@ class CreateMagasinsTable extends Migration
             $table->string('latitude');
             $table->string('address');
             $table->string('image_url')->nullable();
+            $table->integer('type');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
