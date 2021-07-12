@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\ArticleCathegoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Article;
-use App\Models\Shop;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FavoriteArticleController;
+use App\Http\Controllers\FavoriteShopController;
+use App\Http\Controllers\ShopCathegoryController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
+use App\Models\ArticleCathegory;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +25,10 @@ use App\Http\Controllers\ShopController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::apiResource('shops', ShopController::class);
+Route::apiResource('users', UserController::class);
 Route::apiResource('articles', ArticleController::class);
+Route::apiResource('articles-cathegories', ArticleCathegoryController::class);
+Route::apiResource('favorite-articles', FavoriteArticleController::class);
+Route::apiResource('shops', ShopController::class);
+Route::apiResource('shops-cathegories', ShopCathegoryController::class);
+Route::apiResource('favorite-shops', FavoriteShopController::class);
