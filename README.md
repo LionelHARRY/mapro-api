@@ -69,6 +69,10 @@ php artisan make:controller MyController --resource
 
 --resource creates CRUD functions inside the controller
 
+## Routing
+
+API routes are defined in routes\api.php. We can use apiResource() to create API URLs.
+
 ## Migration
 
 ```sh
@@ -77,3 +81,24 @@ php artisan migrate:fresh --seed
 
 fresh means drop db and create new db.
 --seed means add seeders in the database.
+
+## Setting a correct 404 response
+
+If you tried to fetch a non-existent resource, you’ll be thrown an exception and you’ll receive the whole stacktrace. We can fix that by editing our exception handler class, located in app/Exceptions/Handler.php, to return a JSON response:
+
+```sh
+public function register()
+{
+    $this->renderable(function (NotFoundHttpException $e, $request) {
+        if ($request->is('api/*')) {
+            return response()->json([
+                'message' => 'Record not found.'
+            ], 404);
+        }
+    });
+}
+```
+
+renderable() method helps return a custom error message. In this case, a json response.
+
+[`Laravel documentation`](https://laravel.com/docs/8.x/errors#renderable-exceptions)
