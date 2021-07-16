@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleCathegoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteArticleController;
 use App\Http\Controllers\FavoriteShopController;
 use App\Http\Controllers\ShopCathegoryController;
@@ -25,6 +26,10 @@ use App\Models\ArticleCathegory;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('signin', [AuthController::class, 'signin']);
+Route::post('signup', [AuthController::class, 'signup']);
+
 Route::apiResource('users', UserController::class);
 Route::apiResource('articles', ArticleController::class);
 Route::apiResource('articles-cathegories', ArticleCathegoryController::class);

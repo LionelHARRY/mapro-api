@@ -11,6 +11,8 @@
 
 An API (Application Programming Interface) is a set of defined rules that explain how computers or applications communicate with one another. APIs sit between an application and the web server, acting as an intermediary layer that processes data transfer between systems.
 
+Representational State Transfer (REST) is an architectural style for distributed hypermedia systems.
+
 ## Setting Up a Laravel project
 
 If Composer is already installed:
@@ -102,3 +104,25 @@ public function register()
 renderable() method helps return a custom error message. In this case, a json response.
 
 [`Laravel documentation`](https://laravel.com/docs/8.x/errors#renderable-exceptions)
+
+## Security with Laravel PAssport
+
+Install Laravel passport package using composer command:
+
+```sh
+composer require laravel/passport
+```
+
+Run database migration:
+
+```sh
+php artisan migrate
+```
+
+Next, run the command to generate encryption keys for creating secure access tokens:
+
+```sh
+php artisan passport:install
+```
+
+Laravel Passport is an OAuth2 server and API authentication package. It offers a competent OAuth2 server implementation.
