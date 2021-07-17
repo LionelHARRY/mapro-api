@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             ShopCathegoriesTableSeeder::class,
             ShopsTableSeeder::class,
             FavoriteArticlesSeeder::class,
-            FavoriteShopSeeder::class
+            FavoriteShopSeeder::class,
+            RolesTableSeeder::class,
         ]);
     }
 }
