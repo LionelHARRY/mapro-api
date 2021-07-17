@@ -105,7 +105,7 @@ renderable() method helps return a custom error message. In this case, a json re
 
 [`Laravel documentation`](https://laravel.com/docs/8.x/errors#renderable-exceptions)
 
-## Security with Laravel PAssport
+## Security with Laravel Passport
 
 Install Laravel passport package using composer command:
 
@@ -126,3 +126,5 @@ php artisan passport:install
 ```
 
 Laravel Passport is an OAuth2 server and API authentication package. It offers a competent OAuth2 server implementation.
+['Laravel passport documentation'](https://laravel.com/docs/8.x/passport)
+['Laravel passport tutorial'](https://www.remotestack.io/how-to-create-secure-rest-api-in-laravel-with-passport/)
