@@ -30,10 +30,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('signin', [AuthController::class, 'signin']);
 Route::post('signup', [AuthController::class, 'signup']);
 
-Route::apiResource('users', UserController::class);
-Route::apiResource('articles', ArticleController::class);
-Route::apiResource('articles-cathegories', ArticleCathegoryController::class);
-Route::apiResource('favorite-articles', FavoriteArticleController::class);
-Route::apiResource('shops', ShopController::class);
-Route::apiResource('shops-cathegories', ShopCathegoryController::class);
-Route::apiResource('favorite-shops', FavoriteShopController::class);
+
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('articles', ArticleController::class);
+    Route::apiResource('articles-cathegories', ArticleCathegoryController::class);
+    Route::apiResource('favorite-articles', FavoriteArticleController::class);
+    Route::apiResource('shops', ShopController::class);
+    Route::apiResource('shops-cathegories', ShopCathegoryController::class);
+    Route::apiResource('favorite-shops', FavoriteShopController::class);
+});
