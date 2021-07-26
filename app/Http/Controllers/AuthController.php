@@ -25,6 +25,13 @@ class AuthController extends Controller
         }
     }
 
+    public function signout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return ['message' => 'logged out'];
+    }
+
     /**
      * Signup
      */
@@ -34,7 +41,7 @@ class AuthController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'role_id' => 'integer',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ]);
 
@@ -46,7 +53,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        $token = $user->createToken('LaravelPassportRestApiExampl')->accessToken;
+        $token = $user->createToken('LaravelPassportRestApiExample')->accessToken;
 
         return response()->json(['token' => $token], 200);
     }

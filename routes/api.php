@@ -40,4 +40,6 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('shops', ShopController::class);
     Route::apiResource('shops-cathegories', ShopCathegoryController::class);
     Route::apiResource('favorite-shops', FavoriteShopController::class);
+
+    Route::post('signout', [AuthController::class, 'signout']);
 });
