@@ -41,5 +41,8 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('shops-cathegories', ShopCathegoryController::class);
     Route::apiResource('favorite-shops', FavoriteShopController::class);
 
+    Route::get('shops/cathegory/{id}', [ShopController::class, 'byCathegory']);
+    Route::get('articles/cathegory/{id}', [ArticleController::class, 'byCathegory']);
+
     Route::post('signout', [AuthController::class, 'signout']);
 });

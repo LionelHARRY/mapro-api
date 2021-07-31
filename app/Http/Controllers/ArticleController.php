@@ -86,4 +86,9 @@ class ArticleController extends Controller
     {
         //
     }
+
+    public function byCathegory($id)
+    {
+        return Article::where('type_id', $id)->get();
+    }
 }

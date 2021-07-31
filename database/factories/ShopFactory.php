@@ -31,7 +31,7 @@ class ShopFactory extends Factory
             'latitude' => $this->faker->latitude(),
             'email' => $this->faker->email(),
             'siren' => $this->faker->numberBetween(100000, 900000),
-            'type' => rand(1, 6),
+            'type_id' => rand(1, 6),
             'user_id' => rand(1, 50),
         ];
     }

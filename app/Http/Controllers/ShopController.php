@@ -86,4 +86,10 @@ class ShopController extends Controller
     {
         //
     }
+
+    public function byCathegory($id)
+    {
+
+        return Shop::where('type', $id)->get();
+    }
 }

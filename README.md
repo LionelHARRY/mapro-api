@@ -129,6 +129,6 @@ Laravel Passport is an OAuth2 server and API authentication package. It offers a
 
 ['Laravel passport documentation'](https://laravel.com/docs/8.x/passport)
 
-['Laravel passport tutorial'](https://www.remotestack.io/how-to-create-secure-rest-api-in-laravel-with-passport)
+['Laravel API-passport tutorial'](https://www.remotestack.io/how-to-create-secure-rest-api-in-laravel-with-passport)
 
 After updating the databasde, a RuntimeException may occur: Personal access client not found. In that case, install passport again.
