@@ -7,6 +7,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteArticleController;
 use App\Http\Controllers\FavoriteShopController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopCathegoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
@@ -43,6 +44,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('shops/cathegory/{id}', [ShopController::class, 'byCathegory']);
     Route::get('articles/cathegory/{id}', [ArticleController::class, 'byCathegory']);
+    Route::get('search/{name}', [SearchController::class, 'searchAll']);
+    Route::get('search/shop/{name}', [SearchController::class, 'searchShop']);
+    Route::get('search/article/{name}', [SearchController::class, 'searchArticle']);
 
     Route::post('signout', [AuthController::class, 'signout']);
 });
