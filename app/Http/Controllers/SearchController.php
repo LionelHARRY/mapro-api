@@ -8,22 +8,30 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
+
+
     public function searchAll(string $name)
     {
-        $articles = Article::search($name);
-        $shops = Shop::search($name);
-        $collections = $articles->concat($shops)->sortBy('name');
+        $shop = new Shop();
+        $article = new Article();
+
+        $articleResults = $article->searchArticle($name);
+        $shopResults = $shop->searchShop($name);
+
+        $collections = $articleResults->concat($shopResults)->sortBy('name');
 
         return $collections->values()->all();
     }
 
     public function searchShop(string $name)
     {
-        return Shop::search($name);
+        $shop = new Shop();
+        return $shop->searchShop($name);
     }
 
     public function searchArticle(string $name)
     {
-        return Article::search($name);
+        $article = new Article();
+        return $article->searchArticle($name);
     }
 }

@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class Article extends Model
+class Article extends AbstractModel
 {
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'price', 'shop_id', 'type_id'];
 
-    public static function search(string $name)
+    public function searchArticle(string $name)
     {
-        return self::where('name', 'like', "%" . $name . "%")->get();
+        return $this->search(Article::class, $name);
     }
 }
