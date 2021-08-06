@@ -22,7 +22,7 @@ class ArticleCathegoryFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->text(10),
+            'name' => $this->faker->text(10),
         ];
     }
 }

@@ -15,7 +15,7 @@ class CreateShopCathegoriesTable extends Migration
     {
         Schema::create('shop_cathegories', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('name');
             $table->timestamps();
         });
     }

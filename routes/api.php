@@ -42,11 +42,11 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('shops-cathegories', ShopCathegoryController::class);
     Route::apiResource('favorite-shops', FavoriteShopController::class);
 
-    Route::get('shops/cathegory/{id}', [ShopController::class, 'byCathegory']);
-    Route::get('articles/cathegory/{id}', [ArticleController::class, 'byCathegory']);
+    Route::get('shops/cathegories/{id}', [ShopController::class, 'byCathegory']);
+    Route::get('articles/cathegories/{id}', [ArticleController::class, 'byCathegory']);
     Route::get('search/{name}', [SearchController::class, 'searchAll']);
-    Route::get('search/shop/{name}', [SearchController::class, 'searchShop']);
-    Route::get('search/article/{name}', [SearchController::class, 'searchArticle']);
+    Route::get('search/shops/{name}', [SearchController::class, 'searchShop']);
+    Route::get('search/articles/{name}', [SearchController::class, 'searchArticle']);
 
     Route::post('signout', [AuthController::class, 'signout']);
 });

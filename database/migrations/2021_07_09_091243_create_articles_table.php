@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->string('image_url')->nullable();
             $table->integer('shop_id');
-            $table->integer('type_id')->nullable();
+            $table->integer('article_cathegory_id')->nullable();
             $table->timestamps();
         });
     }

@@ -90,6 +90,6 @@ class ShopController extends Controller
     public function byCathegory($id)
     {
 
-        return Shop::where('type', $id)->get();
+        return Shop::where('shop_cathegory_id', $id)->get();
     }
 }

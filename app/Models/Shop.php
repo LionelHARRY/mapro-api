@@ -11,6 +11,11 @@ class Shop extends AbstractModel
 
     protected $fillable = ['name', 'description', 'phone', 'siren', 'email', 'address'];
 
+    public function shopCathegory()
+    {
+        return $this->hasOne(ShopCathegory::class);
+    }
+
     public function searchShop(string $name)
     {
         return $this->search(Shop::class, $name);

@@ -51,6 +51,12 @@ class ShopCathegoryController extends Controller
         return $shopCathegory;
     }
 
+    public function shopsByCathegory($id)
+    {
+        return ShopCathegory::find($id)->shops();
+        // return ['test'];
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

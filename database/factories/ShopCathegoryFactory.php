@@ -22,7 +22,7 @@ class ShopCathegoryFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->unique()->shopCathegory,
+            'name' => $this->faker->unique()->shopCathegory,
         ];
     }
 }
