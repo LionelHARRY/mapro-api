@@ -25,8 +25,8 @@ class CreateMagasinsTable extends Migration
             $table->string('latitude');
             $table->string('address');
             $table->string('image_url')->nullable();
-            $table->integer('shop_cathegory_id');
-            $table->integer('user_id');
+            $table->foreignId('shop_cathegory_id')->nullable()->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

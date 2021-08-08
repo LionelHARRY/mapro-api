@@ -15,8 +15,8 @@ class CreateFavoriteArticlesTable extends Migration
     {
         Schema::create('favorite_articles', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('article_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('article_id')->constrained();
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@ class CreateFavoriteShopsTable extends Migration
     {
         Schema::create('favorite_shops', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('shop_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('shop_id')->constrained();
             $table->timestamps();
         });
     }

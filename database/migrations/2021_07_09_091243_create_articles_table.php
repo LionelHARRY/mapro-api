@@ -20,8 +20,8 @@ class CreateArticlesTable extends Migration
             $table->string('price');
             $table->tinyInteger('status')->default(1);
             $table->string('image_url')->nullable();
-            $table->integer('shop_id');
-            $table->integer('article_cathegory_id')->nullable();
+            $table->foreignId('shop_id')->constrained();
+            $table->foreignId('article_cathegory_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
