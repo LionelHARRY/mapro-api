@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticlesResource;
 use Illuminate\Http\Request;
 use App\Models\Article;
 
@@ -14,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Article::all();
+        return ArticlesResource::collection(Article::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class ArticleController extends Controller
     {
         $article =  Article::create($request->all());
 
-        return response()->json($article, 201);
+        return new ArticlesResource($article);
     }
 
     /**
@@ -48,7 +49,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return $article;
+        return new ArticlesResource($article);
     }
 
     /**
@@ -73,7 +74,7 @@ class ArticleController extends Controller
     {
         $article->update($request->all());
 
-        return response()->json($article, 200);
+        return new ArticlesResource($article);
     }
 
     /**
@@ -82,9 +83,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        return response(null, 204);
     }
 
     public function byCathegory($id)

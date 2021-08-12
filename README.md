@@ -131,4 +131,33 @@ Laravel Passport is an OAuth2 server and API authentication package. It offers a
 
 ['Laravel API-passport tutorial'](https://www.remotestack.io/how-to-create-secure-rest-api-in-laravel-with-passport)
 
-After updating the databasde, a RuntimeException may occur: Personal access client not found. In that case, install passport again.
+After updating the databasde, a RuntimeException may occur: Personal access client not found. In that case, **install passport again**.
+
+## Resource
+
+```sh
+php artisan make:resource MyResource
+```
+
+Creates a resource in which we can define how response data will be displayed. Inside `toArray()` we can define the array of what we want to return. Here is an example :
+
+```sh
+public function toArray($request)
+{
+    return [
+        'id' => (string)$this->id,
+        'type' => 'articles',
+        'attributes' => [
+            'name' => $this->name,
+            'description' => $this->description,
+            'price' => $this->price,
+            'status' => $this->status,
+            'image_url' => $this->image_url,
+            'shop_id' => $this->shop_id,
+            'article_cathegory_id' => $this->article_cathegory_id
+        ]
+    ];
+}
+```
+
+Notice the `id` is casted as a `string`. As a protocol, `json` requires the `id` to be of type `string`.
