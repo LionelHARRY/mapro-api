@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UsersResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return UsersResource::collection(User::all());
     }
 
     /**
@@ -44,7 +45,7 @@ class UserController extends Controller
 
         $user = User::create($request->all());
 
-        return response()->json($user, 201);
+        return new UsersResource($user);
     }
 
     /**
@@ -55,7 +56,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return new UsersResource($user);
     }
 
     /**
