@@ -9,7 +9,17 @@ class Shop extends AbstractModel
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'phone', 'siren', 'email', 'address'];
+    protected $fillable = [
+        'name',
+        'description',
+        'phone',
+        'siren',
+        'email',
+        'address',
+        'longitude',
+        'latitude',
+        'user_id'
+    ];
 
     public function shopCathegory()
     {

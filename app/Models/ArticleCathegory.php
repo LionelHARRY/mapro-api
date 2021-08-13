@@ -9,5 +9,6 @@ class ArticleCathegory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type'];
+    protected $table = 'article_cathegories';
+    protected $fillable = ['name'];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ShopsResource;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 
@@ -14,7 +15,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return Shop::all();
+        return ShopsResource::collection(Shop::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class ShopController extends Controller
     {
         $shop = Shop::create($request->all());
 
-        return response()->json($shop, 201);
+        return new ShopsResource($shop);
     }
 
     /**
@@ -48,7 +49,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return $shop;
+        return new ShopsResource($shop);
     }
 
     /**
@@ -73,7 +74,7 @@ class ShopController extends Controller
     {
         $shop->update($request->all());
 
-        return response()->json($shop, 200);
+        return new ShopsResource($shop);
     }
 
     /**
@@ -82,9 +83,11 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Shop $shop)
     {
-        //
+        $shop->delete();
+
+        return response(null, 204);
     }
 
     public function byCathegory($id)

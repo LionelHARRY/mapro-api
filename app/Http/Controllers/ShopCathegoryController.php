@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ShopCathegoriesResource;
 use App\Models\ShopCathegory;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ShopCathegoryController extends Controller
      */
     public function index()
     {
-        return ShopCathegory::all();
+        return ShopCathegoriesResource::collection(ShopCathegory::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class ShopCathegoryController extends Controller
     {
         $shopCathegory = ShopCathegory::create($request->all());
 
-        return response()->json($shopCathegory, 201);
+        return new ShopCathegoriesResource($shopCathegory);
     }
 
     /**
@@ -46,9 +47,9 @@ class ShopCathegoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ShopCathegory $shopCathegory)
+    public function show($id)
     {
-        return $shopCathegory;
+        return new ShopCathegoriesResource(ShopCathegory::findOrFail($id));
     }
 
     public function shopsByCathegory($id)
@@ -75,11 +76,12 @@ class ShopCathegoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ShopCathegory $shopCathegory)
+    public function update(Request $request, $id)
     {
+        $shopCathegory = ShopCathegory::findOrFail($id);
         $shopCathegory->update($request->all());
 
-        return response()->json($shopCathegory, 200);
+        return new ShopCathegoriesResource($shopCathegory);
     }
 
     /**
@@ -90,6 +92,9 @@ class ShopCathegoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $shopCathegory = ShopCathegory::findOrFail($id);
+        $shopCathegory->delete();
+
+        return response(null, 204);
     }
 }

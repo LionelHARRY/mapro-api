@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleCathegoriesResource;
 use App\Models\ArticleCathegory;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ArticleCathegoryController extends Controller
      */
     public function index()
     {
-        return ArticleCathegory::all();
+        return ArticleCathegoriesResource::collection(ArticleCathegory::all());
     }
 
     /**
@@ -35,20 +36,19 @@ class ArticleCathegoryController extends Controller
      */
     public function store(Request $request)
     {
-        $cathegory = ArticleCathegory::class($request->all());
+        $cathegory = ArticleCathegory::create($request->all());
 
-        return response()->json($cathegory, 201);
+        return new ArticleCathegoriesResource($cathegory);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(ArticleCathegory $cathegory)
     {
-        return $cathegory;
+        return new ArticleCathegoriesResource($cathegory);
     }
 
     /**
@@ -73,17 +73,18 @@ class ArticleCathegoryController extends Controller
     {
         $cathegory->update($request->all());
 
-        return response()->json($cathegory, 200);
+        return new ArticleCathegoriesResource($cathegory);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ArticleCathegory $cathegory)
     {
-        //
+        $cathegory->delete();
+
+        return response(null, 204);
     }
 }
