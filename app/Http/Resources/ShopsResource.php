@@ -18,7 +18,7 @@ class ShopsResource extends JsonResource
             'id' => $this->id,
             'type' => 'shops',
             'attributes' => [
-                'name' => $this->name,
+                'name' => (string)$this->name,
                 'description' => $this->description,
                 'phone' => $this->phone,
                 'email' => $this->email,

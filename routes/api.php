@@ -44,9 +44,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('shops/cathegories/{id}', [ShopController::class, 'byCathegory']);
     Route::get('articles/cathegories/{id}', [ArticleController::class, 'byCathegory']);
-    Route::get('search/{name}', [SearchController::class, 'searchAll']);
-    Route::get('search/shops/{name}', [SearchController::class, 'searchShop']);
-    Route::get('search/articles/{name}', [SearchController::class, 'searchArticle']);
+    Route::get('search/{name}', [SearchController::class, 'searchAll'])->name('search.searchAll');
+    Route::get('search/shops/{name}', [SearchController::class, 'searchShop'])->name('search.searchShop');
+    Route::get('search/articles/{name}', [SearchController::class, 'searchArticle'])->name('search.searchArticle');
 
     Route::post('signout', [AuthController::class, 'signout']);
 });
