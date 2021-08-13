@@ -46,8 +46,9 @@ class ArticleCathegoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(ArticleCathegory $cathegory)
+    public function show(int $id)
     {
+        $cathegory = ArticleCathegory::findOrFail($id);
         return new ArticleCathegoriesResource($cathegory);
     }
 
@@ -69,8 +70,9 @@ class ArticleCathegoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ArticleCathegory $cathegory)
+    public function update(Request $request, $id)
     {
+        $cathegory = ArticleCathegory::findOrFail($id);
         $cathegory->update($request->all());
 
         return new ArticleCathegoriesResource($cathegory);
@@ -81,8 +83,9 @@ class ArticleCathegoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticleCathegory $cathegory)
+    public function destroy(int $id)
     {
+        $cathegory = ArticleCathegory::findOrFail($id);
         $cathegory->delete();
 
         return response(null, 204);
