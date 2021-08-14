@@ -26,7 +26,10 @@ class CreateMagasinsTable extends Migration
             $table->string('address');
             $table->string('image_url')->nullable();
             $table->foreignId('shop_cathegory_id')->nullable()->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

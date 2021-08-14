@@ -29,7 +29,8 @@ class ShopsResource extends JsonResource
                 'address' => $this->address,
                 'image_url' => $this->image_url,
                 'shop_cathegory_id' => $this->shop_cathegory_id,
-                'user_id' => $this->user_id
+                'user' => $this->user,
+                'articles' => $this->articles
             ]
         ];
     }

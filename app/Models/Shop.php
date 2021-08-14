@@ -21,6 +21,23 @@ class Shop extends AbstractModel
         'user_id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     public function shopCathegory()
     {
         return $this->hasOne(ShopCathegory::class);

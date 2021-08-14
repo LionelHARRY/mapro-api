@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShopsRequest;
 use App\Http\Resources\ShopsResource;
 use Illuminate\Http\Request;
 use App\Models\Shop;
@@ -34,7 +35,7 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ShopsRequest $request)
     {
         $shop = Shop::create($request->all());
 

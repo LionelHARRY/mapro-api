@@ -161,3 +161,32 @@ public function toArray($request)
 ```
 
 Notice the `id` is casted as a `string`. As a protocol, `json` requires the `id` to be of type `string`.
+
+## Form Request Validation
+
+Form requests are custom request classes that encapsulate their own validation and authorization logic.
+
+```sh
+php artisan make:request MyRequest
+```
+
+Inside the `authorize()` function, we have to set the return value to `true` :
+
+```sh
+public function authorize()
+{
+    return true;
+}
+```
+
+The rules method returns the validation rules that should apply to the request's data:
+
+```sh
+public function rules()
+{
+    return [
+    'name' => 'required|alpha_num|min:1|max:255',
+    'description' => 'max:255'
+    ];
+}
+```
