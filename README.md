@@ -190,3 +190,7 @@ public function rules()
     ];
 }
 ```
+
+Now we can replace `Illuminate\Http\Request` by the new request that we have created everywhere we want to use our validation.
+
+['Laravel API tutorial'](https://www.youtube.com/watch?v=xvqPEEpRBJ4)
