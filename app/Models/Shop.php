@@ -40,7 +40,7 @@ class Shop extends AbstractModel
 
     public function shopCathegory()
     {
-        return $this->hasOne(ShopCathegory::class);
+        return $this->belongsTo(ShopCathegory::class);
     }
 
     public function searchShop(string $name)

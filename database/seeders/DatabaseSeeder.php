@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ArticlesTableSeeder::class,
             ArticleCathegoriesTableSeeder::class,
+            ArticleArticleCathegoriesTableSeeder::class,
             ShopCathegoriesTableSeeder::class,
             ShopsTableSeeder::class,
             FavoriteArticlesSeeder::class,

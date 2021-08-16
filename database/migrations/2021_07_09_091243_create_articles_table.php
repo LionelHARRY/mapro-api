@@ -24,7 +24,6 @@ class CreateArticlesTable extends Migration
                 ->references('id')
                 ->on('shops')
                 ->cascadeOnDelete();
-            $table->foreignId('article_cathegory_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

@@ -11,6 +11,10 @@ class ShopCathegory extends Model
 
     protected $table = 'shop_cathegories';
     protected $fillable = ['name'];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     // public function shops()
     // {

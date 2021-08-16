@@ -22,6 +22,11 @@ class Article extends AbstractModel
         'updated_at'
     ];
 
+    public function articleCathegories()
+    {
+        return $this->belongsToMany(ArticleCathegory::class, 'article_article_cathegories');
+    }
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);

@@ -23,8 +23,8 @@ class ArticlesResource extends JsonResource
                 'price' => $this->price,
                 'status' => $this->status,
                 'image_url' => $this->image_url,
-                'article_cathegory_id' => $this->article_cathegory_id,
-                'shop' => $this->shop
+                'shop' => $this->shop,
+                'cathegories' => $this->articleCathegories,
             ]
         ];
     }

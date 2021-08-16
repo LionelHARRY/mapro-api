@@ -18,7 +18,8 @@ class ArticleCathegoriesResource extends JsonResource
             'id' => (string)$this->id,
             'type' => 'article_cathegories',
             'attributes' => [
-                'name' => $this->name
+                'name' => $this->name,
+                'articles' => $this->articles
             ]
         ];
     }

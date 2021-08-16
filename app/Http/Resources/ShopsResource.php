@@ -28,9 +28,9 @@ class ShopsResource extends JsonResource
                 'latitude' => $this->latitude,
                 'address' => $this->address,
                 'image_url' => $this->image_url,
-                'shop_cathegory_id' => $this->shop_cathegory_id,
                 'user' => $this->user,
-                'articles' => $this->articles
+                'articles' => $this->articles,
+                'cathegory' => $this->shopCathegory
             ]
         ];
     }
