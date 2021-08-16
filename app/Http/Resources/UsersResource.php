@@ -22,7 +22,9 @@ class UsersResource extends JsonResource
                 'last_name' => $this->last_name,
                 'email' => $this->email,
                 'role_id' => $this->role_id,
-                'shops' => $this->shops
+                'shops' => $this->shops,
+                'favorite_articles' => $this->favoriteArticles,
+                'favorite_shops' => $this->favoriteShops
             ]
         ];
     }
