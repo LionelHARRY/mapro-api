@@ -46,10 +46,10 @@ Inside the model, we can add a fillable variable for mass charging data.
 Factory is where you create a faker for a model.
 
 ```sh
-php artisan make:factory MyFactory --model=MyModel
+php artisan make:factory MyModelFactory --model=MyModel
 ```
 
---model option helps associate imediatly the factory and the related model. The factory must have the same name as the model plus the prefix 'Factory'.
+--model option helps associate imediatly the factory and the related model. The factory must have the same name as the model plus the suffix 'Factory'.
 
 Inside database\factory\MyFactory the definition() function returns a array containing fakers.
 
@@ -62,6 +62,76 @@ php artisan make:seeder MySeeder
 ```
 
 Then, inside database\seeders\DatabaseSeeder, call newly created seeders.
+
+## Implement a custom Faker provider
+
+In some cases, you would like to create your own faker provider. Inside `app` folder, create Faker folder. This is where all custom Faker provider files will be stored. A custom provider usually extends the \Faker\Provider\Base class. Here's an example :
+
+```sh
+namespace App\Faker;
+use Faker\Provider\Base;
+
+class AlphabetProvider extends Base
+{
+    protected static $letters = [
+        'a',
+        'b',
+        'c',
+        'd',
+    ];
+    public function alphabet(): string
+    {
+        return static::randomElement(static::$letters);
+    }
+}
+```
+
+Laravel autoloads the file via Composer. Faker will later use the method name as the name of the formatter. The method returns a random element from a given array of strings.
+
+In order to register the class in Laravel, we can use this command :
+
+```sh
+php artisan make:provider FakerServiceProvider
+```
+
+Also, we nned to include the additional Laravel service provider inside config\app :
+
+```sh
+'providers' => [
+    ...
+    App\Providers\FakerServiceProvider::class,
+],
+```
+
+In `FakerServiceProvider`, use the register() method to bind into the service container :
+
+```sh
+use App\Faker\AlphabetProvider;
+use Faker\{Factory, Generator};
+use Illuminate\Support\ServiceProvider;
+class FakerServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->singleton(Generator::class, function () {
+            $faker = Factory::create();
+            $faker->addProvider(new AlphabetProvider($faker));
+            return $faker;
+        });
+    }
+}
+```
+
+Now you can use the new formatter like the other Faker formatters. In a Laravel factory, the syntax for the custom formatter looks like this :
+
+```sh
+public function definition(): array
+{
+    return [
+        'name' => $this->faker->alphabet,
+    ];
+}
+```
 
 ## Create controllers
 
