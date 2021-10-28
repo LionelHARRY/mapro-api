@@ -33,7 +33,7 @@ Route::post('signup', [AuthController::class, 'signup']);
 
 
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:api', 'throttle:60,1')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('articles', ArticleController::class);
     Route::apiResource('articles-cathegories', ArticleCathegoryController::class);
