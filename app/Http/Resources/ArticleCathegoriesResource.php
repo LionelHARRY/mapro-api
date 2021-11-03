@@ -16,7 +16,7 @@ class ArticleCathegoriesResource extends JsonResource
     {
         return [
             'id' => (string)$this->id,
-            'type' => 'article_cathegories',
+            'type' => $this->getTable(),
             'attributes' => [
                 'name' => $this->name,
                 'articles' => $this->articles

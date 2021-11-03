@@ -19,6 +19,7 @@ class UsersResource extends JsonResource
         return [
             'id' => (string)$this->id,
             'type' => $this->getTable(),
+            'total' => $this->count(),
             'attributes' => [
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,

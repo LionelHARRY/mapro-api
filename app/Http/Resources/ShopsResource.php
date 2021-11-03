@@ -18,7 +18,8 @@ class ShopsResource extends JsonResource
         $cathegory = $this->whenLoaded('shop_cathegory');
         return [
             'id' => $this->id,
-            'type' => 'shops',
+            'type' => $this->getTable(),
+            'total' => $this->count(),
             'attributes' => [
                 'name' => (string)$this->name,
                 'description' => $this->description,
@@ -30,10 +31,9 @@ class ShopsResource extends JsonResource
                 'latitude' => $this->latitude,
                 'address' => $this->address,
                 'image_url' => $this->image_url,
-                'user' => new UsersResource($this->user),
+                'user' => new UsersResource($this->whenLoaded('user')),
                 'articles' => ArticlesResource::collection($this->whenLoaded('articles')),
-                // 'cathegory' => $this->shopCathegory
-                'cathegory' => new ShopCathegoriesResource($this->shop_cathegory),
+                'cathegory' => new ShopCathegoriesResource($this->whenLoaded('shop_cathegory')),
             ]
         ];
     }

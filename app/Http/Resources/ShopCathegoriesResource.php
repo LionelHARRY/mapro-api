@@ -16,7 +16,7 @@ class ShopCathegoriesResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => 'shop_cathegories',
+            'type' => $this->getTable(),
             'attributes' => [
                 'name' => $this->name,
                 'shops' => ShopsResource::collection($this->whenLoaded('shops'))

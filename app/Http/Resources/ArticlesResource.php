@@ -18,14 +18,14 @@ class ArticlesResource extends JsonResource
         $shop = $this->whenLoaded('shop');
         return [
             'id' => (string)$this->id,
-            'type' => 'articles',
+            'type' => $this->getTable(),
             'attributes' => [
                 'name' => $this->name,
                 'description' => $this->description,
                 'price' => $this->price,
                 'status' => $this->status,
                 'image_url' => $this->image_url,
-                'shop' => new ShopsResource($this->shop),
+                'shop' => new ShopsResource($this->whenLoaded('shop')),
                 'cathegories' => $this->articleCathegories,
             ]
         ];
