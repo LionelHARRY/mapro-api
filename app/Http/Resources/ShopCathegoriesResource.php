@@ -18,7 +18,8 @@ class ShopCathegoriesResource extends JsonResource
             'id' => $this->id,
             'type' => 'shop_cathegories',
             'attributes' => [
-                'name' => $this->name
+                'name' => $this->name,
+                'shops' => ShopsResource::collection($this->whenLoaded('shops'))
             ]
         ];
     }

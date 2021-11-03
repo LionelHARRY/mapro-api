@@ -15,7 +15,8 @@ class ShopCathegoryController extends Controller
      */
     public function index()
     {
-        return ShopCathegoriesResource::collection(ShopCathegory::all());
+        $cathegories = ShopCathegory::with(['shops']);
+        return ShopCathegoriesResource::collection($cathegories->paginate(50))->response();
     }
 
     /**

@@ -38,9 +38,9 @@ class Shop extends AbstractModel
         return $this->hasMany(Article::class);
     }
 
-    public function shopCathegory()
+    public function shop_cathegory()
     {
-        return $this->belongsTo(ShopCathegory::class);
+        return $this->belongsTo(ShopCathegory::class, 'shop_cathegory_id');
     }
 
     public function searchShop(string $name)

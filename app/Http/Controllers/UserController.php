@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UsersResource::collection(User::all());
+        $shops = User::with(['shops']);
+        return UsersResource::collection($shops->paginate(50))->response();
     }
 
     /**
@@ -56,7 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return new UsersResource($user);
+        return new UsersResource($user->loadMissing(['shops']));
     }
 
     /**

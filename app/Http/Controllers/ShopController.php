@@ -16,7 +16,9 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return ShopsResource::collection(Shop::all());
+
+        $shops = Shop::with(['user', 'articles', 'shop_cathegory']);
+        return ShopsResource::collection($shops->paginate(50))->response();
     }
 
     /**
@@ -50,7 +52,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return new ShopsResource($shop);
+        return new ShopsResource($shop->loadMissing(['user', 'articles', 'shop_cathegory']));
     }
 
     /**

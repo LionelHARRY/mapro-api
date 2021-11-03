@@ -15,7 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticlesResource::collection(Article::all());
+        $articles = Article::with(['shop']);
+        return ArticlesResource::collection($articles->paginate(50))->response();
     }
 
     /**
@@ -48,7 +49,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return new ArticlesResource($article);
+        return new ArticlesResource($article->loadMissing(['shop']));
     }
 
     /**

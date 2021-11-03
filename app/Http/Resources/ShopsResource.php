@@ -14,6 +14,8 @@ class ShopsResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $this->whenLoaded('user');
+        $cathegory = $this->whenLoaded('shop_cathegory');
         return [
             'id' => $this->id,
             'type' => 'shops',
@@ -28,9 +30,10 @@ class ShopsResource extends JsonResource
                 'latitude' => $this->latitude,
                 'address' => $this->address,
                 'image_url' => $this->image_url,
-                'user' => $this->user,
-                'articles' => $this->articles,
-                'cathegory' => $this->shopCathegory
+                'user' => new UsersResource($this->user),
+                'articles' => ArticlesResource::collection($this->whenLoaded('articles')),
+                // 'cathegory' => $this->shopCathegory
+                'cathegory' => new ShopCathegoriesResource($this->shop_cathegory),
             ]
         ];
     }

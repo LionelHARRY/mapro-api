@@ -9,15 +9,15 @@ class ShopCathegory extends Model
 {
     use HasFactory;
 
-    protected $table = 'shop_cathegories';
+    // protected $table = 'shop_cathegories';
     protected $fillable = ['name'];
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    // public function shops()
-    // {
-    //     return $this->hasMany(Shop::class);
-    // }
+    public function shops()
+    {
+        return $this->hasMany(Shop::class, 'shop_cathegories');
+    }
 }

@@ -14,6 +14,8 @@ class ArticlesResource extends JsonResource
      */
     public function toArray($request)
     {
+        // Empty if not eager loaded (prevent infinit loop)
+        $shop = $this->whenLoaded('shop');
         return [
             'id' => (string)$this->id,
             'type' => 'articles',
@@ -23,7 +25,7 @@ class ArticlesResource extends JsonResource
                 'price' => $this->price,
                 'status' => $this->status,
                 'image_url' => $this->image_url,
-                'shop' => $this->shop,
+                'shop' => new ShopsResource($this->shop),
                 'cathegories' => $this->articleCathegories,
             ]
         ];
